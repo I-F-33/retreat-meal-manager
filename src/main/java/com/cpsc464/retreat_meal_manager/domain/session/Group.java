@@ -1,0 +1,41 @@
+package com.cpsc464.retreat_meal_manager.domain.session;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "groups")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Group {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String groupName;
+
+    @Column(nullable = false)
+    private Integer adultCount;
+
+    @Column(nullable = false)
+    private Integer youthCount;
+
+    @Column(nullable = false)
+    private Integer kidCount;
+
+    @Column(nullable = false)
+    private LocalDate arrivalDate;
+
+    @Column(nullable = false)
+    private LocalDate departureDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "session_id", nullable = false)
+    private Session session;
+}
