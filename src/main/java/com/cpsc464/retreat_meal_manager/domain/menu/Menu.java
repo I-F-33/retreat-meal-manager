@@ -1,11 +1,23 @@
 package com.cpsc464.retreat_meal_manager.domain.menu;
 
-import com.cpsc464.retreat_meal_manager.domain.mealperiod.MealPeriod;
-import jakarta.persistence.*;
-import lombok.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.cpsc464.retreat_meal_manager.domain.mealperiod.MealPeriod;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "menus")
@@ -28,5 +40,6 @@ public class Menu {
 
     @OneToMany(mappedBy = "menu")
     @Builder.Default
+    @JsonIgnore
     private List<MealPeriod> mealPeriods = new ArrayList<>();
 }
